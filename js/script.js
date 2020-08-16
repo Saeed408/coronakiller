@@ -5,14 +5,14 @@ const pointsDiv = document.getElementById('pointsDiv');
 
 
 let bulletSound = document.createElement("audio")
-bulletSound.src = '/sounds/bullet.wav'
+bulletSound.src = './sounds/bullet.wav'
 bulletSound.setAttribute("preload", "auto")
 bulletSound.setAttribute("controls", "none")
 bulletSound.style.display = "none"
   container.append(bulletSound)
 
 let explosionSound = document.createElement("audio")
-explosionSound.src = '/sounds/explosion.wav'
+explosionSound.src = './sounds/explosion.wav'
 explosionSound.setAttribute("preload", "auto")
 explosionSound.setAttribute("controls", "none")
 explosionSound.style.display = "none"
