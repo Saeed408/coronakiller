@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+}
+#container {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: aqua; */
+    /* background-color: linear-gradient(to right,#480048,#c04848); */
+    background-image: url('../imgs/container.gif');
+    /* opacity: 0.5; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+}
+#injection{
+position: absolute;
+width: 25px;
+height: 100px;
+background-image: url('../imgs/syring.png');
+background-size: cover;
+background-repeat: no-repeat;
+background-position-y: center;
+bottom: 0;
+left: calc(50% - 12px);
+/* left: 50%; */
+}
+.bullet{
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: white;
+    bottom: 102px;
+}
+
+.corona {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-image: url(../imgs/coronavirus.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#pointsDiv{
+    background-color: rgba(255, 255, 255, 0.493);
+    font-size: 60px;
+    /* height: 50px; */
+    text-align: right;
+}
