@@ -8,7 +8,6 @@ gameSound.src = './sounds/begin.mp3';
 
 gameSound.setAttribute("loop", "true")
 container.append(gameSound);
-gameSound.play();
 
 let bulletSound = document.createElement("audio")
 bulletSound.src = './sounds/bullet.wav'
@@ -26,6 +25,7 @@ container.addEventListener('mousemove', function (e) {
 
 });
 container.addEventListener('click', function (e) {
+    gameSound.play();
     bulletSound.pause();
     bulletSound.currentTime = 0;
     bulletSound.play();
