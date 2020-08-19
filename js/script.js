@@ -3,19 +3,17 @@ const injection = document.getElementById('injection');
 const pointsDiv = document.getElementById('pointsDiv');
 
 
+let gameSound = document.createElement("audio");
+gameSound.src = '/sounds/begin.mp3';
+gameSound.setAttribute("loop", "true")
+container.append(gameSound);
+gameSound.play();
 
 let bulletSound = document.createElement("audio")
-bulletSound.src = './sounds/bullet.wav'
-bulletSound.setAttribute("preload", "auto")
-bulletSound.setAttribute("controls", "none")
-bulletSound.style.display = "none"
+bulletSound.src = '/sounds/bullet.wav'
   container.append(bulletSound)
-
 let explosionSound = document.createElement("audio")
-explosionSound.src = './sounds/explosion.wav'
-explosionSound.setAttribute("preload", "auto")
-explosionSound.setAttribute("controls", "none")
-explosionSound.style.display = "none"
+explosionSound.src = '/sounds/explosion.wav'
   container.append(explosionSound)
 
 container.addEventListener('mousemove', function (e) {
@@ -58,9 +56,8 @@ setInterval(function () {
     coronaDiv.style.left = coronaLeft + 'px';
     container.append(coronaDiv);
     coranaArr.push({
-        coronaElement: coronaDiv,
-        top: 0,
-        left: coronaLeft
+        coronaDiv,
+        top: 0
     })
 
 }, 1000)
@@ -70,9 +67,9 @@ setInterval(() => {
     coranaArr.forEach((coronaObj, idx) => {
         if(coronaObj.top <  containerHeight) {
             coronaObj.top += 10;
-        coronaObj.coronaElement.style.top = coronaObj.top +'px'
+        coronaObj.coronaDiv.style.top = coronaObj.top +'px'
         } else {
-            container.removeChild(coronaObj.coronaElement)
+            container.removeChild(coronaObj.coronaDiv)
             coranaArr.splice(idx, 1);
         }        
     })
@@ -81,13 +78,13 @@ setInterval(() => {
 let points = 0;
 function explode(bulletElement, interval){
     coranaArr.forEach((corona, idx) => {
-        if (is_colliding(bulletElement, corona.coronaElement)) {
+        if (is_colliding(bulletElement, corona.coronaDiv)) {
             explosionSound.pause();
             explosionSound.currentTime = 0;
             explosionSound.play();
-            clearInterval(interval)
+            clearInterval(interval);
             bulletElement.parentNode.removeChild(bulletElement);
-            corona.coronaElement.parentNode.removeChild(corona.coronaElement)
+            corona.coronaDiv.parentNode.removeChild(corona.coronaDiv)
             coranaArr.splice(idx, 1);
             points++;
             pointsDiv.innerHTML ='Killed Viruses: ' + points;
@@ -95,12 +92,17 @@ function explode(bulletElement, interval){
     })
 }
 
+// https://gist.github.com/shaal/bf5c3f95aefdf43ee32fe6475a3a14bf
 var is_colliding = function( $div1, $div2 ) {
+	// Div 1 data
+	//var d1_offset             = $div1.offset();
 	var d1_height             = $div1.offsetHeight;
 	var d1_width              = $div1.offsetWidth;
 	var d1_distance_from_top  = $div1.offsettop + d1_height;
 	var d1_distance_from_left = $div1.offsetLeft + d1_width;
 
+	// Div 2 data
+	//var d2_offset             = $div2.offset();
 	var d2_height             = $div2.offsetHeight;
 	var d2_width              = $div2.offsetWidth;
 	var d2_distance_from_top  = $div2.offsetTop + d2_height;
@@ -108,5 +110,6 @@ var is_colliding = function( $div1, $div2 ) {
 
 	var not_colliding = ( d1_distance_from_top < $div2.offsetTop || $div1.offsetTop > d2_distance_from_top || d1_distance_from_left < $div2.offsetLeft || $div1.offsetLeft > d2_distance_from_left );
 
+	// Return whether it IS colliding
 	return ! not_colliding;
 };
