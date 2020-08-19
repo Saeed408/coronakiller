@@ -5,15 +5,24 @@ const pointsDiv = document.getElementById('pointsDiv');
 
 let gameSound = document.createElement("audio");
 gameSound.src = '/sounds/begin.mp3';
+gameSound.setAttribute("preload", "auto")
+gameSound.setAttribute("controls", "none")
+gameSound.style.display = "none"
 gameSound.setAttribute("loop", "true")
 container.append(gameSound);
 gameSound.play();
 
 let bulletSound = document.createElement("audio")
 bulletSound.src = '/sounds/bullet.wav'
+bulletSound.setAttribute("preload", "auto")
+bulletSound.setAttribute("controls", "none")
+bulletSound.style.display = "none"
   container.append(bulletSound)
 let explosionSound = document.createElement("audio")
 explosionSound.src = '/sounds/explosion.wav'
+explosionSound.setAttribute("preload", "auto")
+explosionSound.setAttribute("controls", "none")
+explosionSound.style.display = "none"
   container.append(explosionSound)
 
 container.addEventListener('mousemove', function (e) {
